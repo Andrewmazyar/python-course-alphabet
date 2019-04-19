@@ -79,6 +79,7 @@ def task_6_min_value_list_of_dicts(data: DT, key: str) -> ST:
     """
     for x in data:
         pass
+    #some code
 
 
 
