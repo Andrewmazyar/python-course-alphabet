@@ -136,7 +136,7 @@ def task_10_generator_of_simple_numbers() -> Generator[int, None, None]:
     """
     fibonacci = []
     fib0 = 1
-    fib1 = 2
+    fib1 = 1
     while fib1<=200:
         fibonacci.append(fib1)
         fibsum = fib1 + fib0
