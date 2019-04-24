@@ -18,7 +18,7 @@ def drop_tables(cur: psycopg2.connect) -> None:
     tables = ["Employees", "OrderDetails", "Categories", "Customers",
               "Orders", "Products", "Shippers", "Suppliers"]
     for table in tables:
-        cur.execute(f"DROP TABLE {table.lower()};")
+        cur.execute("DROP TABLE {};".format(table.lower()))
 
 
 def fill_tables(cur: psycopg2.connect) -> None:
@@ -34,5 +34,5 @@ def clear_tables(cur: psycopg2.connect) -> None:
     tables = ["Employees", "OrderDetails", "Categories", "Customers",
               "Orders", "Products", "Shippers", "Suppliers"]
     for table in tables:
-        query = f"DELETE FROM {table.lower()} WHERE TRUE ;"
+        query = "DELETE FROM {} WHERE TRUE ;".format(table.lower())
         cur.execute(query)

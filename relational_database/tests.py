@@ -30,6 +30,7 @@ from relational_database.homework import \
 
 class TestSQLQueries(unittest.TestCase):
 
+
     conn = None
     cur = None
 
@@ -38,10 +39,10 @@ class TestSQLQueries(unittest.TestCase):
         with conn.cursor() as cursor:
             user = TEST_DATABASE.get('user')
             database = TEST_DATABASE.get('database')
-            cursor.execute(f"DROP DATABASE IF EXISTS {database}")
-            cursor.execute(f"SELECT 1 FROM pg_catalog.pg_user WHERE usename = '{user}'")
+            cursor.execute("DROP DATABASE IF EXISTS {}".format(database))
+            cursor.execute("SELECT 1 FROM pg_catalog.pg_user WHERE usename = '{a}' ".format(a = user))
             if cursor.fetchone():
-                cursor.execute(f"DROP ROLE {user}")
+                cursor.execute("DROP ROLE {}".format(user))
             conn.commit()
 
 
@@ -51,13 +52,15 @@ class TestSQLQueries(unittest.TestCase):
             user = TEST_DATABASE.get('user')
             database = TEST_DATABASE.get('database')
             password = TEST_DATABASE.get('password')
-            cursor.execute(f"CREATE ROLE {user} WITH LOGIN CREATEDB PASSWORD '{password}'")
-            cursor.execute(f"CREATE DATABASE {database}")
-            cursor.execute(f"GRANT ALL PRIVILEGES ON DATABASE {database} to {user};")
+            cursor.execute("CREATE ROLE {b} WITH LOGIN CREATEDB PASSWORD '{a}'".format(a = password, b = user))
+            cursor.execute("CREATE DATABASE {}".format(database))
+            cursor.execute("GRANT ALL PRIVILEGES ON DATABASE {a} to {b};".format(a = database,b = user))
             conn.commit()
 
     @classmethod
     def setUpClass(cls) -> None:
+        print(DATABASE)
+        print(type(DATABASE))
         root_conn = psycopg2.connect(**DATABASE)
         root_conn.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
         cls.drop_test_database_and_role(root_conn)
