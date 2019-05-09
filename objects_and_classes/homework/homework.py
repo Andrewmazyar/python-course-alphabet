@@ -28,7 +28,7 @@
     Повинен мати реалізованими наступні методи
 
     add(car) -> Добавляє машину в гараж, якщо є вільні місця
-    remove(cat) -> Забирає машину з гаражу.
+    remove(car) -> Забирає машину з гаражу.
     hit_hat() -> Вертає сумарну вартість всіх машин в гаражі
 
 
@@ -46,15 +46,85 @@
 
     Колекціонерів можна порівнювати за ціною всіх їх автомобілів.
 """
+from objects_and_classes.homework.constants import (
+    CARS_PRODUCER,
+    CARS_TYPES,
+    TOWNS
+)
+import uuid
+import random
 
 
 class Cesar:
-    pass
+    register_id = None
+
+    def __init__(self, name):
+        self.name = name
+        self.garages = []
+        self.register_id = uuid.uuid4()
+        self.garage = Garage()
+        if self.register_id == self.garage.owner:
+            self.garages.append(self.garage)
+
+    def hit_hat(self):
+        self.sum = 0
+        for car in self.garages:
+            self.sum += car.hit_hat()
+        return self.sum
+
+    def garages_count(self):
+        return len(self.garages)
+
+    def add_car(self):
+        pass
+
+    def cars_count(self):
+        self.sum_car = 0
+        for car in self.garages:
+            self.sum_car += len(car.cars)
+        return self.sum_car
+
 
 
 class Car:
-    pass
+
+    def __init__(self, price, mileage):
+        self.price = price
+        self.type = random.choice(CARS_TYPES)
+        self.producer = random.choice(CARS_PRODUCER)
+        self.number = uuid.uuid4()
+        self.mileage = float(mileage)
+
+    def all_har(self, item):
+        return f"price car: {self.price},\ntype: {self.type},\nnumber: {self.number}, \nmileage: {self.mileage}"
+
+    def change_number(self):
+        self.number = uuid.uuid4()
+        return self.number
 
 
 class Garage:
-    pass
+    def __init__(self, places):
+        self.town = random.choice(TOWNS)
+        self.cars = []
+        self.places = places
+        self.owner = Cesar.register_id
+        self.car = Car()
+
+    def add_car(self):
+        if len(self.cars) < self.places:
+            self.cars.append(self.car)
+            return f"your car was success add to garage, your car in garage:{self.cars}"
+        else:
+            return "you do not have enough space in garage, chose another garage"
+
+    def remove(self):
+        self.cars.remove(self.car)
+        return f"this {self.car} was remove from garage, this list cars in garage: {self.cars}"
+
+    def hit_hat(self):
+        self.sum = 0
+        for price in self.cars:
+            self.sum += self.car[price]
+        return self.sum
+
