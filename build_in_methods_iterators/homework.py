@@ -16,9 +16,9 @@ def task_1_fix_names_start_letter(data: DT) -> DT:
         >>> [{'name': 'Alex', 'age': 26}, {'name': 'Denys', 'age': 89}]
     """
     for x in data:
-        x['name'] = x['name'].capitalize()
+        if 'name' in x:
+            x['name'] = x['name'].capitalize()
     return data
-
 
 def task_2_remove_dict_fields(data: DT, redundant_keys: List[str]) -> DT:
     """given_data
@@ -41,59 +41,42 @@ def task_3_find_item_via_value(data: DT, value) -> DT:
         find_item_via_value([{'name': 'Alex', 'age': 26}, {'name': 'denys', 'age': 89}], 26)
         >>> [{'name': 'Alex', 'age': 26}]
     """
-  #  for x in data:
-  #      if x.values() == value:
-   #         return data[x]
     return [d for d in data if value in d.values()]
 
 def task_4_min_value_integers(data: List[int]) -> int:
     """
     Find and return minimum value from list
     """
-    x = int(data[0])
-    for i in data:
-        if int(i) < x:
-            x = i
-    return int(x)
-
+    if data:
+        x = data[0]
+        for i in data:
+            if i < x:
+                x = i
+        return x
 
 def task_5_min_value_strings(data: List[Union[str, int]]) -> str:
     """
     Find the longest string
     """
-    some = ''
-    l = 0
-    for x, y in data:
-        if len(x) > l:
-            l = len(x)
-            some = x
-    return some
-
-
+    li = list(map(str, data))
+    try:
+        return min(li, key=len)
+    except:
+        return None
 
 def task_6_min_value_list_of_dicts(data: DT, key: str) -> ST:
     """
     Find minimum value by given key
     Returns:
     """
-    for x in data:
-        pass
-    #some code
-
-
-
-
+    list = [i for i in data if i.get('age', 0)]
+    return min(list, key=lambda x: x.get('age'))
 
 def task_7_max_value_list_of_lists(data: List[List[int]]) -> int:
     """
     Find max value from list of lists
     """
-  #  x = data[0]
-   # for i in data:
-    #    if i > x:
-     #       x = i
-    #return x
-    return max(list(map(lambda x: max(x), data)))
+    return max([i for list in data for i in list])
 
 def task_8_sum_of_ints(data: List[int]) -> int:
     """
@@ -134,23 +117,13 @@ def task_10_generator_of_simple_numbers() -> Generator[int, None, None]:
         next(a)
         >>> 3
     """
-    fibonacci = []
-    fib0 = 1
-    fib1 = 1
-    while fib1<=200:
-        fibonacci.append(fib1)
-        fibsum = fib1 + fib0
-        fib0 =fib1
-        fib1 = fibsum
-    return fibonacci
-
-
+    for x in range(2, 200):
+        if all(x % i != 0 for i in range(2, x)):
+            yield x
 
 def task_11_create_list_of_random_characters() -> List[str]:
     """
     Create list of 20 elements where each element is random letter from latin alphabet
     """
-    l = []
-    for x in range(20):
-        l.append(random.choice(string.ascii_letters))
-    return l
+    li = [random.choice(string.ascii_lowercase) for x in range(20)]
+    return li
