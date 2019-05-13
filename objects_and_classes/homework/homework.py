@@ -75,15 +75,23 @@ class Cesar:
     def garages_count(self):
         return len(self.garages)
 
-    def add_car(self):
-        pass
+    def add_car(self, car, garage=None):
+        if garage:
+            if garage in self.garages:
+                garage.add_car(car)
+        else:
+            place_list = []
+            for garage in self.garages:
+                place_list.append(garage.free_place)
+            for garage in self.garages:
+                if garage.free_place == max(place_list):
+                    garage.add_car(car)
 
     def cars_count(self):
         self.sum_car = 0
         for car in self.garages:
             self.sum_car += len(car.cars)
         return self.sum_car
-
 
 
 class Car:
@@ -110,6 +118,7 @@ class Garage:
         self.places = places
         self.owner = Cesar.register_id
         self.car = Car()
+        self.free_place = self.places - len(self.cars)
 
     def add_car(self):
         if len(self.cars) < self.places:
@@ -127,4 +136,3 @@ class Garage:
         for price in self.cars:
             self.sum += self.car[price]
         return self.sum
-
