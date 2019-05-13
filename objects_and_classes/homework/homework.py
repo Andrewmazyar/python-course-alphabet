@@ -72,6 +72,14 @@ class Cesar:
             self.sum += car.hit_hat()
         return self.sum
 
+    def comparison_cesar(self, other):
+        if self.hit_hat() == other.hit_hat():
+            return f"this Cesar {self.name} is the same Cesar {other.name}"
+        elif self.hit_hat() < other.hit_hat():
+            return f"this Cesar {self.name} is more cheaper with this Cesar {other.name}"
+        elif self.hit_hat() > other.price():
+            return f"this Cesar {self.name} is more expensive with this Cesar {other.name}"
+
     def garages_count(self):
         return len(self.garages)
 
@@ -103,7 +111,15 @@ class Car:
         self.number = uuid.uuid4()
         self.mileage = float(mileage)
 
-    def all_har(self, item):
+    def comparison_car(self, other):
+        if self.price() == other.price():
+            return f"this car {self.price} is the same price with this car {other.car}"
+        elif self.price() < other.price():
+            return f"this car {self.price} is more cheaper with this car {other.car}"
+        elif self.price() > other.price():
+            return f"this car {self.price} is more expensive with this car {other.car}"
+
+    def all_car(self, item):
         return f"price car: {self.price},\ntype: {self.type},\nnumber: {self.number}, \nmileage: {self.mileage}"
 
     def change_number(self):
