@@ -103,7 +103,6 @@ class Cesar:
 
 
 class Car:
-
     def __init__(self, price, mileage):
         self.price = price
         self.type = random.choice(CARS_TYPES)
@@ -119,7 +118,7 @@ class Car:
         elif self.price() > other.price():
             return f"this car {self.price} is more expensive with this car {other.car}"
 
-    def all_car(self, item):
+    def all_info_car(self, item):
         return f"price car: {self.price},\ntype: {self.type},\nnumber: {self.number}, \nmileage: {self.mileage}"
 
     def change_number(self):
