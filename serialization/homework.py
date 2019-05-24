@@ -1,3 +1,12 @@
+from objects_and_classes.homework.homework import (
+    Cesar,
+    Garage,
+    Car
+)
+import json
+from ruamel.yaml import YAML
+import ruamel.yaml
+import pickle
 """
 Для попереднього домашнього завдання.
 Для класу Колекціонер Машина і Гараж написати методи, які створюють інстанс обєкту
@@ -17,3 +26,4 @@ Advanced
 Добавити опрацьовку формату ini
 
 """
+# ________JSON________
