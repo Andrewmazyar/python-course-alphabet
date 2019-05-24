@@ -1,5 +1,5 @@
-from repositories import CategoryRepository
-from utils import fill_categories
+from tests.repositories import CategoryRepository
+from tests.utils import fill_categories
 
 if __name__ == "__main__":
     categories = [

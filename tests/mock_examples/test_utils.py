@@ -1,5 +1,5 @@
-from utils import fill_categories
-from repositories import CategoryRepository
+from tests.utils import fill_categories
+from tests.repositories import CategoryRepository
 
 import unittest
 from mock import patch
