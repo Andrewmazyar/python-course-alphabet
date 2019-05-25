@@ -1,0 +1,6 @@
+!!python/object:objects_and_classes.homework.homework.Cesar
+garages: []
+name: Heorh
+register_id: !!python/object:uuid.UUID
+  int: 18898067317328706433727912006841395528
+  is_safe: !!python/object/apply:uuid.SafeUUID [null]

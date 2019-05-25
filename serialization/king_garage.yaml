@@ -1,0 +1,6 @@
+!!python/object:objects_and_classes.homework.homework.Garage
+cars: []
+free_place: 4
+owner: null
+places: 4
+town: Kiev

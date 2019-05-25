@@ -1,0 +1,8 @@
+!!python/object:objects_and_classes.homework.homework.Car
+mileage: 5000.0
+number: !!python/object:uuid.UUID
+  int: 39387647823520123375596649539350629373
+  is_safe: !!python/object/apply:uuid.SafeUUID [null]
+price: 500000
+producer: BENTLEY
+type: Wagon
