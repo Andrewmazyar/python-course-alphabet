@@ -59,8 +59,8 @@ def cesar_from_json(data):
 
 def garage_from_json(data):
     places = data['places']
-    owner = data['owner']
-    gr = Garage(places=places, owner=owner)
+    # owner = data['owner']
+    gr = Garage(places=places)
     return gr
 
 
@@ -98,13 +98,13 @@ with open('elite_car.json', 'w') as file:
 
 
 # _______Create Cesar, Garage and Car from JSON files______
-with open('cesar_1.json', 'r') as file:
+with open('heorh.json', 'r') as file:
     decoded_cesar = json.load(file, object_hook=cesar_from_json)
 
-with open('garage_1.json', 'r') as file:
+with open('king_garage.json', 'r') as file:
     decoded_garage = json.load(file, object_hook=garage_from_json)
 
-with open('car_1.json', 'r') as file:
+with open('elite_car.json', 'r') as file:
     decoded_car = json.load(file, object_hook=car_from_json)
 
 # ___________convert by YAML____________
@@ -127,13 +127,13 @@ with open('elite_car.yaml', 'w') as file:
 # ______Create Cesar, Garage and Car from YAML_______
 
 with open('heorh.yaml', 'r') as file:
-    cesar_1 = ruamel.yaml.load(file)
+    heorh = ruamel.yaml.load(file)
 
 with open('king_garage.yaml', 'r') as file:
-    garage_1 = ruamel.yaml.load(file)
+    king_garage = ruamel.yaml.load(file)
 
 with open('elite_car.yaml', 'r') as file:
-    car_1 = ruamel.yaml.load(file)
+    elite_car = ruamel.yaml.load(file)
 
 
 # ______________PICKLE__________

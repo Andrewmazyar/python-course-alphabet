@@ -62,15 +62,18 @@ class Cesar:
         self.name = name
         self.garages = []
         self.register_id = uuid.uuid4()
+
+
+    def hit_hat(self):
         self.garage = Garage()
         if self.register_id == self.garage.owner:
             self.garages.append(self.garage)
-
-    def hit_hat(self):
         self.sum = 0
         for car in self.garages:
             self.sum += car.hit_hat()
         return self.sum
+
+
 
     def comparison_cesar(self, other):
         if self.hit_hat() == other.hit_hat():
@@ -132,10 +135,10 @@ class Garage:
         self.cars = []
         self.places = places
         self.owner = Cesar.register_id
-        self.car = Car()
         self.free_place = self.places - len(self.cars)
 
     def add_car(self):
+        self.car = Car()
         if len(self.cars) < self.places:
             self.cars.append(self.car)
             return f"your car was success add to garage, your car in garage:{self.cars}"
