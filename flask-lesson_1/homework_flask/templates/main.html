@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %} main {% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+    <h1>Home page</h1>
+    <ul>
+        <li><a href = {{url_for('fruits_page')}}>fruits</a></li>
+        <li><a href = {{url_for('vegetables_page')}}>vegetables</a></li>
+    </ul>
+
+<footer>
+    <h4><a href=' https://www.youtube.com/watch?v=fVGCLEAqUtA '>if you want dance ))))</a></h4>
+</footer>
+{% endblock %}
