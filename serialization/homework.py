@@ -15,6 +15,7 @@ yaml, json, pickle відповідно.
 
 Advanced
 Добавити опрацьовку формату ini
+<<<<<<< HEAD
 """
 from objects_and_classes.homework.homework import (
     Cesar,
