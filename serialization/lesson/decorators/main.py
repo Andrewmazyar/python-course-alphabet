@@ -24,4 +24,8 @@ def our_awesome_function(*args, **kwargs):
     print("End of our function")
 
 
+<<<<<<< HEAD
 our_awesome_function(*range(10))
+=======
+our_awesome_function(*range(10))
+>>>>>>> 5b8510124724f43e3dd24ecbe8263bf5e3300e86

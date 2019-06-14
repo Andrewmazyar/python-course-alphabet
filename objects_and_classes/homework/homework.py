@@ -28,7 +28,11 @@
     Повинен мати реалізованими наступні методи
 
     add(car) -> Добавляє машину в гараж, якщо є вільні місця
+<<<<<<< HEAD
     remove(car) -> Забирає машину з гаражу.
+=======
+    remove(cat) -> Забирає машину з гаражу.
+>>>>>>> 5b8510124724f43e3dd24ecbe8263bf5e3300e86
     hit_hat() -> Вертає сумарну вартість всіх машин в гаражі
 
 
@@ -46,6 +50,7 @@
 
     Колекціонерів можна порівнювати за ціною всіх їх автомобілів.
 """
+<<<<<<< HEAD
 from objects_and_classes.homework.constants import (
     CARS_PRODUCER,
     CARS_TYPES,
@@ -151,3 +156,17 @@ class Garage:
         for price in self.cars:
             self.sum += self.car[price]
         return self.sum
+=======
+
+
+class Cesar:
+    pass
+
+
+class Car:
+    pass
+
+
+class Garage:
+    pass
+>>>>>>> 5b8510124724f43e3dd24ecbe8263bf5e3300e86

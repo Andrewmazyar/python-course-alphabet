@@ -56,4 +56,7 @@ if __name__ == "__main__":
     print(Programmer.programmers_count)
 
     Programmer.print_hello()
+<<<<<<< HEAD
     print(programmer)
+=======
+>>>>>>> 5b8510124724f43e3dd24ecbe8263bf5e3300e86
