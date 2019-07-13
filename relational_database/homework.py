@@ -37,6 +37,8 @@ def task_2_list_all_customers(cur) -> list:
     """
     cur.execute("SELECT * FROM customers;")
     return cur.fetchall()
+    with open(cur) as custom:
+        pass
 
 
 def task_3_list_customers_in_germany(cur) -> list:
