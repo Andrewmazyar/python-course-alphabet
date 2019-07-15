@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %} vegetables {% endblock %}
+{% block head %}
+<h1>{{ title }}</h1>
+{% endblock %}
+{% block content %}
+{% for vegetable in values %}
+<ul>
+    <p> {{ vegetable }} </p>
+</ul>
+{% endfor %}
+{% endblock %}
