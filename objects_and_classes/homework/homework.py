@@ -29,7 +29,6 @@
 
     add(car) -> Добавляє машину в гараж, якщо є вільні місця
     remove(car) -> Забирає машину з гаражу.
-    remove(cat) -> Забирає машину з гаражу.
     hit_hat() -> Вертає сумарну вартість всіх машин в гаражі
 
 
@@ -64,33 +63,25 @@ class Cesar:
         self.garages = []
         self.register_id = uuid.uuid4()
 
-    def add_garage(self, garage):
-        self.garages.append(garage)
-        garage.owner = self.name
 
     def hit_hat(self):
+        self.garage = Garage()
+        if self.register_id == self.garage.owner:
+            self.garages.append(self.garage)
         self.sum = 0
         for car in self.garages:
             self.sum += car.hit_hat()
         return self.sum
 
-    def __ne__(self, other):
-        return self.hit_hat() != other.hit_hat()
 
-    def __eq__(self, other):
-        return self.hit_hat() == other.hit_hat()
 
-    def __le__(self, other):
-        return self.hit_hat() <= other.hit_hat()
-
-    def __ge__(self, other):
-        return self.hit_hat() >= other.hit_hat()
-
-    def __lt__(self, other):
-        return self.hit_hat() < other.hit_hat()
-
-    def __gt__(self, other):
-        return self.hit_hat() > other.hit_hat()
+    def comparison_cesar(self, other):
+        if self.hit_hat() == other.hit_hat():
+            return f"this Cesar {self.name} is the same Cesar {other.name}"
+        elif self.hit_hat() < other.hit_hat():
+            return f"this Cesar {self.name} is more cheaper with this Cesar {other.name}"
+        elif self.hit_hat() > other.price():
+            return f"this Cesar {self.name} is more expensive with this Cesar {other.name}"
 
     def garages_count(self):
         return len(self.garages)
@@ -102,9 +93,9 @@ class Cesar:
         else:
             place_list = []
             for garage in self.garages:
-                place_list.append(garage.free_place())
+                place_list.append(garage.free_place)
             for garage in self.garages:
-                if garage.free_place() == max(place_list):
+                if garage.free_place == max(place_list):
                     garage.add_car(car)
 
     def cars_count(self):
@@ -122,27 +113,16 @@ class Car:
         self.number = uuid.uuid4()
         self.mileage = float(mileage)
 
-    def __repr__(self):
-        return f"price car: {self.price},\ntype: {self.type},\nnumber: {self.number}, \nmileage: {self.mileage}," \
-            f"producer: {self.producer}"
+    def comparison_car(self, other):
+        if self.price() == other.price():
+            return f"this car {self.price} is the same price with this car {other.car}"
+        elif self.price() < other.price():
+            return f"this car {self.price} is more cheaper with this car {other.car}"
+        elif self.price() > other.price():
+            return f"this car {self.price} is more expensive with this car {other.car}"
 
-    def __ne__(self, other):
-        return self.price != other.price
-
-    def __eq__(self, other):
-        return self.price == other.price
-
-    def __le__(self, other):
-        return self.price <= other.price
-
-    def __ge__(self, other):
-        return self.price >= other.price
-
-    def __lt__(self, other):
-        return self.price < other.price
-
-    def __gt__(self, other):
-        return self.price > other.price
+    def all_info_car(self, item):
+        return f"price car: {self.price},\ntype: {self.type},\nnumber: {self.number}, \nmileage: {self.mileage}"
 
     def change_number(self):
         self.number = uuid.uuid4()
@@ -155,22 +135,22 @@ class Garage:
         self.cars = []
         self.places = places
         self.owner = Cesar.register_id
+        self.free_place = self.places - len(self.cars)
 
-    def free_place(self):
-        return self.places - len(self.cars)
-
-    def add_car(self, car):
+    def add_car(self):
+        self.car = Car()
         if len(self.cars) < self.places:
-            self.cars.append(car)
-            return self.cars
+            self.cars.append(self.car)
+            return f"your car was success add to garage, your car in garage:{self.cars}"
         else:
-            return "you do not have enough space in garage"
+            return "you do not have enough space in garage, chose another garage"
 
-    def remove(self, car):
-        self.cars.remove(car)
+    def remove(self):
+        self.cars.remove(self.car)
+        return f"this {self.car} was remove from garage, this list cars in garage: {self.cars}"
 
     def hit_hat(self):
         self.sum = 0
         for price in self.cars:
-            self.sum += price.price
+            self.sum += self.car[price]
         return self.sum
