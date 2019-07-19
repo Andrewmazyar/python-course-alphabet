@@ -56,3 +56,4 @@ if __name__ == "__main__":
     print(Programmer.programmers_count)
 
     Programmer.print_hello()
+    print(programmer)
