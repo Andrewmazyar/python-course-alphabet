@@ -1,7 +1,7 @@
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.urls import reverse
-from .models import Article
-from .forms import ArticleForm
+from .models import Article, Comment
+from .forms import ArticleForm, CommentForm
 from account.models import Profile
 from .mixins import FormMessageMixin
 from django.db.models import Q
@@ -70,3 +70,24 @@ class ArticleDeleteView(DeleteView):
     pk_url_kwarg = 'article_id'
     template_name = 'article/confirm_delete.html'
     context_object_name = 'article'
+    
+
+class CommentListView(ListView):
+    model = Comment
+    template_name = 'article/detail.html'
+    context_object_name = 'comment'
+
+
+class CommentCreateView(FormMessageMixin, CreateView):
+    model = Comment
+    template_name = 'article/create_comment.html'
+    form_class = CommentForm
+    form_valid_message = 'Comment created successfully!'
+
+    def form_valid(self, form):
+        profile = Profile.objects.get(user=self.request.user)
+        form.instance.author = profile
+        return super(CommentCreateView, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse('detail', args=(self.object.id,))

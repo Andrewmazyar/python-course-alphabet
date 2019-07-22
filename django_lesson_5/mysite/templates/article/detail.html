@@ -21,7 +21,13 @@
 <br>
 {% comment %}<p>Description: {% select_description article language %}</p>{% endcomment %}
 <p>Description: {{ article.description|safe }}</p>
+{% for coment in comment %}
+    <p> {{ coment.description }}</p>
+    <p> {{ coment.timestamp }}</p>
+{% endfor %}
 
-
+<a href="{% url 'create_comment' %}">create comment</a>
 <a href="{% url 'update' article.id %}">Update</a>
 <a href="{% url 'delete' article.id %}">Delete</a>
+
+
