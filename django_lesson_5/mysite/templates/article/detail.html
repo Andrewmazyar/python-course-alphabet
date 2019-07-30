@@ -21,12 +21,18 @@
 <br>
 {% comment %}<p>Description: {% select_description article language %}</p>{% endcomment %}
 <p>Description: {{ article.description|safe }}</p>
-{% for coment in comment %}
-    <p> {{ coment.description }}</p>
-    <p> {{ coment.timestamp }}</p>
-{% endfor %}
-
-<a href="{% url 'create_comment' %}">create comment</a>
+<!--<p> comment: {{ article.comment }}</p>-->
+{% if user.is_authenticated %}
+    {%for coment in article.comment %}
+        <strong> comment: {{ coment.user.name}}</strong>
+        <p> comment: {{ coment.description}}</p>
+        <p> comment: {{ coment.timestamp}}</p>
+        <a href="{% url 'create_comment' %}">create comment</a>
+    {%endfor%}
+{% endif %}
+{% if user.is_authenticated %}
+    <a href="{% url 'create_comment' %}">create comment</a>
+{% endif %}
 <a href="{% url 'update' article.id %}">Update</a>
 <a href="{% url 'delete' article.id %}">Delete</a>
 

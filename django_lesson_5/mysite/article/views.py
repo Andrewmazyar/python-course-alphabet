@@ -7,7 +7,6 @@ from .mixins import FormMessageMixin
 from django.db.models import Q
 from django.utils.translation import get_language, activate
 
-
 class IndexView(ListView):
     model = Article
     template_name = 'index.html'
@@ -85,9 +84,18 @@ class CommentCreateView(FormMessageMixin, CreateView):
     form_valid_message = 'Comment created successfully!'
 
     def form_valid(self, form):
-        profile = Profile.objects.get(user=self.request.user)
+        profile = Comment.user
+        comment = Comment.comment
         form.instance.author = profile
+        form.instance.coment = comment
         return super(CommentCreateView, self).form_valid(form)
+
+    # def form_valid(self, form):
+    #     author = Comment.objects.get(user=self.request.user)
+    #     coment = Comment.objects.get(comment=self.request.comment)
+    #     comment = form.save()
+    #     form.instance = [author, coment, comment]
+    #     return super(CommentCreateView, self).form_valid(form)
 
     def get_success_url(self):
         return reverse('detail', args=(self.object.id,))
