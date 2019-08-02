@@ -35,7 +35,7 @@ urlpatterns = i18n_patterns(
     # Article
     path('article/create', ArticleCreateView.as_view(), name='create'),
     path('article/<int:article_id>', ArticleDetailView.as_view(), name='detail'),
-    path('article', CommentListView.as_view(), name='comment'),
+    path('article/<int:article_id>', CommentListView.as_view(), name='comment'),
     path('article/update/<int:article_id>', ArticleUpdateView.as_view(), name='update'),
     path('article/create_comment', CommentCreateView.as_view(), name='create_comment'),
     path('article/delete/<int:article_id>', ArticleDeleteView.as_view(), name='delete'),

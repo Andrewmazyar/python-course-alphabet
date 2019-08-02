@@ -82,20 +82,14 @@ class CommentCreateView(FormMessageMixin, CreateView):
     template_name = 'article/create_comment.html'
     form_class = CommentForm
     form_valid_message = 'Comment created successfully!'
+    # pk_url_kwarg = 'article_id'
 
     def form_valid(self, form):
-        profile = Comment.user
-        comment = Comment.comment
-        form.instance.author = profile
-        form.instance.coment = comment
+        profile = Profile.objects.get(user=self.request.user)
+        article = Comment.objects.filter(pk=self.object)
+        form.instance.user = profile
+        form.instance.article = article
         return super(CommentCreateView, self).form_valid(form)
-
-    # def form_valid(self, form):
-    #     author = Comment.objects.get(user=self.request.user)
-    #     coment = Comment.objects.get(comment=self.request.comment)
-    #     comment = form.save()
-    #     form.instance = [author, coment, comment]
-    #     return super(CommentCreateView, self).form_valid(form)
 
     def get_success_url(self):
         return reverse('detail', args=(self.object.id,))

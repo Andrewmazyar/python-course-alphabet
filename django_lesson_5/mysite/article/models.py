@@ -14,9 +14,9 @@ class Article(models.Model):
 
 class Comment(models.Model):
     description = models.TextField()
-    comment = models.ForeignKey(to=Article, on_delete=models.SET_NULL, null=True)
-    user = models.ForeignKey(to=Profile, on_delete=models.SET_NULL, null=True)
-    timestamp = models.DateTimeField(auto_now=True)
+    comments = models.ForeignKey(to=Article, on_delete=models.SET_NULL, null=True)
+    author = models.ForeignKey(to=Profile, on_delete=models.SET_NULL, null=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
     
 # from django.db.models.signals import post_save
 # from django.dispatch import receiver

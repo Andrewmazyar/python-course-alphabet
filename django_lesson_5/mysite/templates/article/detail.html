@@ -22,14 +22,14 @@
 {% comment %}<p>Description: {% select_description article language %}</p>{% endcomment %}
 <p>Description: {{ article.description|safe }}</p>
 <!--<p> comment: {{ article.comment }}</p>-->
-{% if user.is_authenticated %}
-    {%for coment in article.comment %}
-        <strong> comment: {{ coment.user.name}}</strong>
-        <p> comment: {{ coment.description}}</p>
-        <p> comment: {{ coment.timestamp}}</p>
-        <a href="{% url 'create_comment' %}">create comment</a>
-    {%endfor%}
-{% endif %}
+<!--{% if user.is_authenticated %}-->
+<!--    {%for coment in article.comment %}-->
+<!--        <strong> comment: {{ coment.user.name}}</strong>-->
+<!--        <p> comment: {{ coment.description}}</p>-->
+<!--        <p> comment: {{ coment.timestamp}}</p>-->
+<!--        <a href="{% url 'create_comment' %}">create comment</a>-->
+<!--    {%endfor%}-->
+<!--{% endif %}-->
 {% if user.is_authenticated %}
     <a href="{% url 'create_comment' %}">create comment</a>
 {% endif %}
